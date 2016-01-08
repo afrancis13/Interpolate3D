@@ -13,15 +13,17 @@ Requirements
 
 In terminal to run the program. This is the library used to read from and write to Excel documents. In the program's current form, the Excel document must have the following form:
 
-==============  ==============
-:math:`H`       :math:`T`     
-==============  ==============
-:math:`H_1`     :math:`T_1`   
-:math:`H_2`     :math:`T_2`   
-:math:`\ldots` 	:math:`\ldots`
-:math:`\ldots`  :math:`\ldots`
-:math:`H_n`     :math:`T_n`   
-==============  ==============
+.. math::
+	==============  ==============
+	H       		T     
+	==============  ==============
+	H_1     		T_1   
+	H_2     		T_2   
+	\ldots 			\ldots
+	\ldots  		\ldots
+	H_n     		T_n   
+	==============  ==============
+
 Run
 -------
 .. code-block:: python
@@ -32,15 +34,16 @@ See the tests for the formats of these documents.
 
 This will print the values of the percentages and write these values to the third column of the Excel document.
 
-==============  ==============  ============================
-:math:`H`       :math:`T`       :math:`\mathbb{P}[H, T]` 
-==============  ==============  ============================ 
-:math:`H_1`     :math:`T_1`     :math:`\mathbb{P}[H_1, T_1]`
-:math:`H_2`     :math:`T_2`     :math:`\mathbb{P}[H_2, T_2]`
-:math:`\ldots` 	:math:`\ldots`  :math:`\ldots`
-:math:`\ldots`  :math:`\ldots`  :math:`\ldots`
-:math:`H_n`     :math:`T_n`     :math:`\mathbb{P}[H_n, T_n]`
-==============  ==============  ============================
+.. math::
+	==============  ==============  ============================
+	H       		T       		\mathbb{P}[H, T] 
+	==============  ==============  ============================ 
+	H_1     		T_1     		\mathbb{P}[H_1, T_1]
+	H_2     		T_2     		\mathbb{P}[H_2, T_2]
+	\ldots 			\ldots  		\ldots
+	\ldots  		\ldots  		\ldots
+	H_n     		T_n     		\mathbb{P}[H_n, T_n]
+	==============  ==============  ============================
 
 An image displaying the joint densities from the matrix (blue) and those interpolated from this data matrix (red) is seen below.
 
