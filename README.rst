@@ -13,16 +13,12 @@ Requirements
 
 In terminal to run the program. This is the library used to read from and write to Excel documents. In the program's current form, the Excel document must have the following form:
 
-.. math::
-	==============  ==============
-	H       		T     
-	==============  ==============
-	H_1     		T_1   
-	H_2     		T_2   
-	\ldots 			\ldots
-	\ldots  		\ldots
-	H_n     		T_n   
-	==============  ==============
+.. image:: media/firstchart.png
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: alternate text
+   :align: center
 
 Run
 -------
@@ -34,20 +30,16 @@ See the tests for the formats of these documents.
 
 This will print the values of the percentages and write these values to the third column of the Excel document.
 
-.. math::
-	==============  ==============  ============================
-	H       		T       		\mathbb{P}[H, T] 
-	==============  ==============  ============================ 
-	H_1     		T_1     		\mathbb{P}[H_1, T_1]
-	H_2     		T_2     		\mathbb{P}[H_2, T_2]
-	\ldots 			\ldots  		\ldots
-	\ldots  		\ldots  		\ldots
-	H_n     		T_n     		\mathbb{P}[H_n, T_n]
-	==============  ==============  ============================
+.. image:: media/secondchart.png
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: alternate text
+   :align: center
 
 An image displaying the joint densities from the matrix (blue) and those interpolated from this data matrix (red) is seen below.
 
-.. image:: Interpolate3D.png
+.. image:: media/Interpolate3D.png
    :height: 100px
    :width: 200 px
    :scale: 50 %
