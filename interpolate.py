@@ -1,5 +1,7 @@
-from sys import argv
+import matplotlib.pyplot as plt
 
+from sys import argv
+from mpl_toolkits.mplot3d import Axes3D
 from openpyxl import load_workbook
 
 
@@ -97,7 +99,7 @@ class Interpolater:
         regression on the values in the percentage matrix, but this methodology
         would likely result in a very small improvement.
         '''
-        
+
         self.acquire_h_t_pairs()
         self.acquire_matrix()
         for i in range(len(self.H)):
@@ -107,12 +109,12 @@ class Interpolater:
             if h_lower == None or h_upper == None or t_lower == None or t_upper == None:
                 self.percent.append(0)
                 continue
-            
+
             percent_h_upper_t_upper = self.map_h_t[(h_upper, t_upper)]
             percent_h_upper_t_lower = self.map_h_t[(h_upper, t_lower)]
             percent_h_lower_t_upper = self.map_h_t[(h_lower, t_upper)]
             percent_h_lower_t_lower = self.map_h_t[(h_lower, t_lower)]
-            
+
             slope_h_lower = float((percent_h_lower_t_upper - percent_h_upper_t_lower)/(t_upper - t_lower))
             slope_h_upper = float((percent_h_upper_t_upper - percent_h_upper_t_lower)/(t_upper - t_lower))
             weighted_average_h_lower = percent_h_lower_t_lower + slope_h_lower * (t_i - t_lower)
@@ -135,8 +137,34 @@ class Interpolater:
                     cell.value = "Percent"
                 else:
                     cell.value = self.percent[i-1]
-        
+
         workbook.save(filename=self.interpolation_doc)
+
+    def plots(self):
+        '''
+        Plots a scatter of percentages with associated variable values.
+        Only works for inputs of one or two variables, due to plotting
+        constraints.
+
+        Color coded:
+            Blue: Inputted joint density data.
+            Red: User requested joint density interpolation.
+        '''
+        fig_one = plt.figure()
+        ax_one = Axes3D(fig_one)
+
+        k, v = self.map_var_density.keys(), self.map_var_density.values()
+        ordered_h = zip(*k)[0]
+        ordered_t = zip(*k)[1]
+        ordered_percent = v
+        ax_one.scatter(ordered_h, ordered_t, ordered_percent, c='b')
+        ax_one.scatter(self.H, self.T, self.percent, c='r')
+
+        ax_one.set_xlabel('H')
+        ax_one.set_ylabel('T')
+        ax_one.set_zlabel('%')
+
+        plt.show()
 
 # Script
 

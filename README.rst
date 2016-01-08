@@ -6,11 +6,10 @@ The following project is a Python script that is used to modify an excel documen
 
 This process can be generalized to n dimensional joint density data. This project was the motivation for ``py
 
-Install Dependencies
--------
-.. code-block:: python
-
-    pip install openpyxl
+Requirements
+------------
+* openpyxl_
+* 
 
 In terminal to run the program. This is the library used to read from and write to Excel documents. In the program's current form, the Excel document must have the following form:
 
@@ -27,7 +26,9 @@ Run
 -------
 .. code-block:: python
 
-    python interpolate.py HsTe.txt ht_matrix.xlsx
+    python interpolate.py DENSITY_MATRIX VALUES_TO_INTERPOLATE
+
+See the tests for the formats of these documents.
 
 This will print the values of the percentages and write these values to the third column of the Excel document.
 
@@ -40,6 +41,15 @@ This will print the values of the percentages and write these values to the thir
 :math:`\ldots`  :math:`\ldots`  :math:`\ldots`
 :math:`H_n`     :math:`T_n`     :math:`\mathbb{P}[H_n, T_n]`
 ==============  ==============  ============================
+
+An image displaying the joint densities from the matrix (blue) and those interpolated from this data matrix (red) is seen below.
+
+.. image:: Interpolate3D.jpeg
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
+   :alt: alternate text
+   :align: center
 
 These files have been attached in the tests and can be used for demo purposes. Note that you can substitute any Excel document for the demo one as long as it holds the format specified above.
 
