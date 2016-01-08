@@ -47,7 +47,7 @@ This will print the values of the percentages and write these values to the thir
 
 An image displaying the joint densities from the matrix (blue) and those interpolated from this data matrix (red) is seen below.
 
-.. image:: Interpolate3D.jpeg
+.. image:: Interpolate3D.png
    :height: 100px
    :width: 200 px
    :scale: 50 %
