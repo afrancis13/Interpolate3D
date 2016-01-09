@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 
-from sys import argv
+from argparse import ArgumentParser
 from mpl_toolkits.mplot3d import Axes3D
 from openpyxl import load_workbook
 
 
-class Interpolater:
+class Interpolater(object):
 
     def __init__(self, txt, xlsx):
         '''
@@ -115,8 +115,8 @@ class Interpolater:
             percent_h_lower_t_upper = self.map_h_t[(h_lower, t_upper)]
             percent_h_lower_t_lower = self.map_h_t[(h_lower, t_lower)]
 
-            slope_h_lower = float((percent_h_lower_t_upper - percent_h_upper_t_lower)/(t_upper - t_lower))
-            slope_h_upper = float((percent_h_upper_t_upper - percent_h_upper_t_lower)/(t_upper - t_lower))
+            slope_h_lower = float((percent_h_lower_t_upper - percent_h_upper_t_lower) / (t_upper - t_lower))
+            slope_h_upper = float((percent_h_upper_t_upper - percent_h_upper_t_lower) / (t_upper - t_lower))
             weighted_average_h_lower = percent_h_lower_t_lower + slope_h_lower * (t_i - t_lower)
             weighted_average_h_upper = percent_h_upper_t_lower + slope_h_upper * (t_i - t_lower)
 
@@ -136,7 +136,16 @@ class Interpolater:
                 if i == 0:
                     cell.value = "Percent"
                 else:
-                    cell.value = self.percent[i-1]
+                    cell.value = self.percent[i - 1]
+
+        workbook.save(filename=self.interpolation_doc)
+
+    def clear(self):
+        workbook = load_workbook(filename=self.interpolation_doc)
+        for worksheet in workbook:
+            for i in range(len(worksheet.rows)):
+                cell = worksheet.cell(column=2, row=i)
+                cell.value = ""
 
         workbook.save(filename=self.interpolation_doc)
 
@@ -166,12 +175,29 @@ class Interpolater:
 
         plt.show()
 
+
 # Script
 
-original_doc = argv[1]
-interpolation_doc = argv[2]
+parser = ArgumentParser(description='Python joint density interpolation tool.')
+parser.add_argument('density_matrix', help='Provided discrete matrix of joint densities.')
+help_string = 'Values the user would like to interpolate based on the density matrix.'
+parser.add_argument('values_to_interpolate', help=help_string)
+parser.add_argument('-c', '--clear', help='Clear the percent column in all worksheets.')
+parser.add_argument('-p', '--plot', help='Show plot of interpolated data with provided data.')
+
+args = parser.parse_args()
+
+original_doc = args.density_matrix
+interpolation_doc = args.values_to_interpolate
 
 i = Interpolater(original_doc, interpolation_doc)
-i.calculate_percentages()
-print "The percentages are as follows:\n" + str(i.percent)
-i.write_to_xlsx()
+
+if args.clear:
+    i.clear()
+    print "Finished clearing columns of the excel document..."
+else:
+    i.calculate_percentages()
+    print "The percentages are as follows:\n" + str(i.percent)
+    i.write_to_xlsx()
+    if args.plot:
+        i.plots()

@@ -8,7 +8,7 @@ This process can be generalized to n dimensional joint density data. This projec
 
 Requirements
 ------------
-* openpyxl_
+* openpyxl_ 1.8.5+
 * matplotlib_ 1.4.3+
 
 In terminal to run the program. This is the library used to read from and write to Excel documents. In the program's current form, the Excel document must have the following form:

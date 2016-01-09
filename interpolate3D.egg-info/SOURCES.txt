@@ -1,0 +1,6 @@
+README.rst
+setup.py
+interpolate3D.egg-info/PKG-INFO
+interpolate3D.egg-info/SOURCES.txt
+interpolate3D.egg-info/dependency_links.txt
+interpolate3D.egg-info/top_level.txt
