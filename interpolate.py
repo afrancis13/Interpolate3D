@@ -28,7 +28,7 @@ class Interpolater(object):
         valid_types = (float, int)
         for worksheet in workbook:
             for row in worksheet.rows:
-                h_cell, t_cell = row
+                h_cell, t_cell = row[0], row[1]
                 h, t = h_cell.value, t_cell.value
                 if type(h) in valid_types and type(t) in valid_types:
                     self.H.append(h)
@@ -120,7 +120,7 @@ class Interpolater(object):
             weighted_average_h_lower = percent_h_lower_t_lower + slope_h_lower * (t_i - t_lower)
             weighted_average_h_upper = percent_h_upper_t_lower + slope_h_upper * (t_i - t_lower)
 
-            slope_t = float((weighted_average_h_upper - weighted_average_h_lower)/(h_upper - h_lower))
+            slope_t = float((weighted_average_h_upper - weighted_average_h_lower) / (h_upper - h_lower))
             weighted_average_overall = weighted_average_h_lower + slope_t * (h_i - h_lower)
 
             self.percent.append(weighted_average_overall)
@@ -182,8 +182,8 @@ parser = ArgumentParser(description='Python joint density interpolation tool.')
 parser.add_argument('density_matrix', help='Provided discrete matrix of joint densities.')
 help_string = 'Values the user would like to interpolate based on the density matrix.'
 parser.add_argument('values_to_interpolate', help=help_string)
-parser.add_argument('-c', '--clear', help='Clear the percent column in all worksheets.')
-parser.add_argument('-p', '--plot', help='Show plot of interpolated data with provided data.')
+parser.add_argument('-c', '--clear', action='store_true', help='Clear the percent column in all worksheets.')
+parser.add_argument('-p', '--plot', action='store_true', help='Show plot of interpolated data with provided data.')
 
 args = parser.parse_args()
 

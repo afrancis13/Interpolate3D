@@ -7,15 +7,11 @@ from openpyxl import load_workbook
 class TestInterpolater(unittest.TestCase):
 
     def test_interpolater(self):
-        help_text = os.system('python interpolate.py tests/HsTe.txt, tests/ht_matrix.xlsx -h')
-        expected_help_text = ''
-        self.assertEqual(help_text, expected_help_text)
-
         os.system('python interpolate.py tests/HsTe.txt tests/ht_matrix.xlsx')
 
-        workbook = load_workbook(filename='tests/ht_matrix.xlsx')
+        first_workbook = load_workbook(filename='tests/ht_matrix.xlsx')
 
-        for worksheet in workbook:
+        for worksheet in first_workbook:
             observed_column = worksheet.columns[2]
             observed_interpolated_values = []
             for cell in observed_column:
@@ -43,6 +39,10 @@ class TestInterpolater(unittest.TestCase):
 
         self.assertEqual(observed_interpolated_values, expected_interpolated_values)
 
-        os.system('python interpolate.py tests/HsTe.txt, tests/ht_matrix.xlsx -c')
+        os.system('python interpolate.py tests/HsTe.txt tests/ht_matrix.xlsx -c')
 
-        self.assertEqual(len(worksheet.columns), 2)
+        second_workbook = load_workbook(filename='tests/ht_matrix.xlsx')
+        for worksheet in second_workbook:
+            observed_column = worksheet.columns[2]
+            for cell in observed_column:
+                self.assertEqual(cell.value, None)
