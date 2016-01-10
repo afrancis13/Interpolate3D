@@ -4,7 +4,7 @@ except ImportError:
     from distutils.core import setup
 
 install_requires = [
-    'openpyxl>=1.8.5'
+    'openpyxl>=1.8.5',
     'matplotlib>=1.4.3'
 ]
 
