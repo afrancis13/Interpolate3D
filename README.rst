@@ -1,6 +1,8 @@
 ===================
 Interpolate3D
 ===================
+.. image:: https://travis-ci.org/afrancis13/Interpolate3D.svg?branch=master
+    :target: https://travis-ci.org/afrancis13/Interpolate3D
 
 The following project is a Python script that is used to modify an excel document. It takes value of H (wave height) and T (wave period) from a predetermined matrix of probabilities of occurrence (percentages, normalized to 100) and interpolates the values for values not in the matrix.
 
@@ -24,7 +26,7 @@ Run
 -------
 .. code-block:: python
 
-    python interpolate.py DENSITY_MATRIX VALUES_TO_INTERPOLATE
+    python interpolate.py density_matrix values_to_interpolate [-c] [-p] [-h]
 
 See the tests for the formats of these documents.
 
