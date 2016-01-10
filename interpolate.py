@@ -52,11 +52,11 @@ class Interpolater(object):
                     for i in range(1, len(line_split)):
                         try:
                             t = float(list_t[i])
-                        except ValueError as e:
+                        except ValueError:
                             continue
                         try:
                             value = float(line_split[i])
-                        except ValueError as e:
+                        except ValueError:
                             if line_split[i] == '':
                                 self.map_h_t[(h, t)] = 0
                             continue
@@ -106,7 +106,7 @@ class Interpolater(object):
             h_i, t_i = self.H[i], self.T[i]
             h_lower, h_upper, t_lower, t_upper = self.acquire_closest_h_t(h_i, t_i)
 
-            if h_lower == None or h_upper == None or t_lower == None or t_upper == None:
+            if h_lower is None or h_upper is None or t_lower is None or t_upper is None:
                 self.percent.append(0)
                 continue
 

@@ -3,7 +3,10 @@ try:
 except ImportError:
     from distutils.core import setup
 
-install_requires = []
+install_requires = [
+    'openpyxl>=1.8.5'
+    'matplotlib>=1.4.3'
+]
 
 with open('README.rst') as f:
     readme = f.read()
