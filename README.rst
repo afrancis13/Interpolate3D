@@ -6,7 +6,11 @@ Interpolate3D
 
 The following project is a Python script that is used to modify an excel document. It takes value of H (wave height) and T (wave period) from a predetermined matrix of probabilities of occurrence (percentages, normalized to 100) and interpolates the values for values not in the matrix.
 
-This process can be generalized to n dimensional joint density data. This project was the motivation for an upcoming project, ``py-interpolate``, which will be linked here shortly.
+This process can be generalized to n dimensional joint density data. This project was the motivation for an upcoming project, ``py-interpolate``.
+
+CalWave
+------------
+This project was a small part of a semester working with CalWave at UC Berkeley. The more complete picture of my research on energy analytics can be seen in the document CalWave2015.pdf, which is attached to this repository.
 
 Requirements
 ------------
